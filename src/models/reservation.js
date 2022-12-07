@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Reservation extends Model {
     /**
@@ -11,6 +12,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Reservation.belongsTo(models.Customer, {
+        foreignKey: 'customerId',
+        
+      });
+      Reservation.belongsTo(models.Cabin, {
+        foreignKey: 'cabinId',
+
+      });
     }
   }
   Reservation.init({
