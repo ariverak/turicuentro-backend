@@ -2,7 +2,9 @@ import { verifyJWT } from "../utils/jwt";
 
 export default function (req, res, next) {
   const payload = verifyJWT(req.headers.authorization);
+
   console.log(payload);
+  console.log(req.headers.authorization)
   if (!payload) {
     return res.status(403).json({ message: "You're not authorized" });
   }

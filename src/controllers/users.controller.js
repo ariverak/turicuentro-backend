@@ -1,7 +1,7 @@
 import models from '../models';
 import { signJWT } from "../utils/jwt";
-
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt"
+import _ from 'lodash';
 const { User } = models;
 
 export const loginUser = async (req, res) => {
@@ -18,8 +18,8 @@ export const loginUser = async (req, res) => {
     if (!bcrypt.compareSync(password, user.password)) {
       return res.status(401).json({ message: "Invalid password" });
     }
-    const token = signJWT(user.id);
-    res.status(200).json({ token });
+    const accessToken = signJWT(user.id);
+    res.status(200).json({ accessToken, user: _.omit(user.toJSON(), 'password') });
 
   } catch (error) {
     console.log(error);
@@ -59,7 +59,6 @@ export const getUser = async (req, res) => {
         id: req.userId
       },
     });
-    console.log(user)
     res.json(user);
   } catch (error) {
     res.status(500);
