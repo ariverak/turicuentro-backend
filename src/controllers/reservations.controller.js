@@ -1,5 +1,6 @@
 import models from '../models'
 import moment from 'moment';
+import { Op } from 'sequelize';
 
 const { Reservation, Customer, Cabin } = models;
 
