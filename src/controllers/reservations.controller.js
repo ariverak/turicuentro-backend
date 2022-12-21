@@ -1,10 +1,25 @@
 import models from '../models'
+import moment from 'moment';
 
 const { Reservation, Customer, Cabin } = models;
 
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 export const getReservations = async (req, res) => {
+    const { month } = req.query;
+    const startDate = moment(month, 'MM').startOf('month').toDate();
+    const endDate = moment(month, 'MM').endOf('month').toDate();
+
     const reservations = await Reservation.findAll({
-        include: [Customer, Cabin]
+        include: [Customer, Cabin],
+        where: {
+            startDate: {
+                [Op.gte]: startDate
+            },
+            endDate: {
+                [Op.lte]: endDate
+            }
+        }
     });
     return res.json(reservations);
 };
