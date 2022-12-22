@@ -7,18 +7,18 @@ const { Reservation, Customer, Cabin } = models;
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 export const getReservations = async (req, res) => {
-    const { month } = req.query;
-    const startDate = moment(month, 'MM').startOf('month').toDate();
-    const endDate = moment(month, 'MM').endOf('month').toDate();
+    const { startDate, endDate } = req.query;
+    const start = moment(startDate, 'YYYY-MM-DD').toDate();
+    const end = moment(endDate, 'YYYY-MM-DD').toDate()
 
     const reservations = await Reservation.findAll({
         include: [Customer, Cabin],
         where: {
             startDate: {
-                [Op.gte]: startDate
+                [Op.gte]: start
             },
             endDate: {
-                [Op.lte]: endDate
+                [Op.lte]: end
             }
         }
     });
