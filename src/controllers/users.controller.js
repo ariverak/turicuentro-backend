@@ -2,7 +2,7 @@ import models from '../models';
 import { signJWT } from "../utils/jwt";
 import bcrypt from "bcrypt"
 import _ from 'lodash';
-const { User } = models;
+const User = models.user;
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;

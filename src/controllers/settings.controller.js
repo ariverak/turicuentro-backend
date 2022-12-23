@@ -1,6 +1,6 @@
 import models from '../models';
 
-const { Setting } = models;
+const Setting = models.setting;
 
 export const getSettings = async (req, res) => {
   const settings = await Setting.findAll();

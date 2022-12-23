@@ -12,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Reservation.belongsTo(models.Customer, {
+      Reservation.belongsTo(models.customer, {
         foreignKey: 'customerId',
         
       });
-      Reservation.belongsTo(models.Cabin, {
+      Reservation.belongsTo(models.cabin, {
         foreignKey: 'cabinId',
 
       });
@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     message: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Reservation',
+    modelName: 'reservation',
   });
   return Reservation;
 };

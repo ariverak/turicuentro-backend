@@ -1,6 +1,6 @@
 import models from '../models';
 
-const { Customer } = models;
+const Customer = models.customer;
 
 export const getCustomers = async (req, res) => {
     const customers = await Customer.findAll();

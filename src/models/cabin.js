@@ -16,9 +16,10 @@ module.exports = (sequelize, DataTypes) => {
   Cabin.init({
     name: DataTypes.STRING,
     price: DataTypes.INTEGER,
+    color: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Cabin',
+    modelName: 'cabin',
   });
   return Cabin;
 };

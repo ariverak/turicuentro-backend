@@ -1,6 +1,6 @@
 import models from '../models'
 
-const { Cabin } = models;
+const Cabin = models.cabin;
 
 export const getCabins = async (req, res) => {
     const cabins = await Cabin.findAll();
@@ -8,10 +8,11 @@ export const getCabins = async (req, res) => {
 };
 
 export const createCabin = async (req, res) => {
-    const { name, price } = req.body;
+    const { name, price, color } = req.body;
     await Cabin.create({
         name,
-        price
+        price,
+        color
     });
     return res.status(201).json({ message: 'Cabin created' });
 };
@@ -26,10 +27,11 @@ export const deleteCabin = async (req, res) => {
 
 export const updateCabin = async (req, res) => {
     const { id } = req.params;
-    const { name, price } = req.body;
+    const { name, price, color } = req.body;
     await Cabin.update({
         name,
-        price
+        price,
+        color
     }, {
         where: { id }
     });

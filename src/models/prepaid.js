@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Prepaid.belongsTo(models.Reservation,{
+      Prepaid.belongsTo(models.reservation,{
         foreignKey: 'reservationId',
 
       })
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     reservationId: DataTypes.INTEGER,
   }, {
     sequelize,
-    modelName: 'Prepaid',
+    modelName: 'prepaid',
   });
   return Prepaid;
 };

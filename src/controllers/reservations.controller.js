@@ -2,9 +2,9 @@ import models from '../models'
 import moment from 'moment';
 import { Op } from 'sequelize';
 
-const { Reservation, Customer, Cabin } = models;
-
-const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const Reservation = models.reservation;
+const Customer = models.customer;
+const Cabin = models.cabin;
 
 export const getReservations = async (req, res) => {
     const { startDate, endDate } = req.query;

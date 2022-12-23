@@ -1,6 +1,6 @@
 import models from '../models';
-
-const { Prepaid, Reservation } = models;
+const Prepaid = models.prepaid
+const Reservation = models.reservation
 
 export const getPrepaids = async (req, res) => {
   const prepaids = await Prepaid.findAll({
