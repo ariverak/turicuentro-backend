@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Reservations', {
+    await queryInterface.createTable('reservations', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,17 +11,17 @@ module.exports = {
       },
       customerId: {
         type: Sequelize.INTEGER,
+        onDelete: 'SET NULL',
         references: {
-          model: 'Customers',
+          model: 'customers',
           key: 'id'
         }
       },
       cabinId: {
         type: Sequelize.INTEGER,
-        // onDelete: 'CASCADE',
-        // onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
         references: {
-          model: 'Cabins',
+          model: 'cabins',
           key: 'id'
         }
       },
@@ -57,6 +57,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Reservations');
+    await queryInterface.dropTable('reservations');
   }
 };

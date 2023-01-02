@@ -3,8 +3,10 @@ const Prepaid = models.prepaid
 const Reservation = models.reservation
 
 export const getPrepaids = async (req, res) => {
+  const { reservationId } = req.query;
   const prepaids = await Prepaid.findAll({
-    include: [Reservation]
+    include: [Reservation],
+    where: { reservationId }
   });
   return res.json(prepaids);
 };

@@ -13,8 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Prepaid.belongsTo(models.reservation,{
         foreignKey: 'reservationId',
-
-      })
+        onDelete:'CASCADE',
+      });
+      models.reservation.hasMany(Prepaid);
     }
   }
   Prepaid.init({

@@ -16,7 +16,6 @@ export const createCabin = async (req, res) => {
     });
     return res.status(201).json({ message: 'Cabin created' });
 };
-
 export const deleteCabin = async (req, res) => {
     const { id } = req.params;
     await Cabin.destroy({
